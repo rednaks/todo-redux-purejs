@@ -9,7 +9,6 @@ class Footer extends Element {
     const _$showLabel = document.createElement('span');
     this._$.appendChild(_$showLabel);
 
-    // TODO Filters
     this._$.appendChild(new FilterBtn(store, VisibilityFilters.SHOW_ALL).dom());
     this._$.appendChild(new FilterBtn(store, VisibilityFilters.SHOW_ACTIVE).dom());
     this._$.appendChild(new FilterBtn(store, VisibilityFilters.SHOW_COMPLETED).dom());
