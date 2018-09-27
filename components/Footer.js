@@ -10,9 +10,9 @@ class Footer extends Element {
     this._$.appendChild(_$showLabel);
 
     // TODO Filters
-    this._$.appendChild(new FilterBtn(store, VisibilityFilters.SHOW_ALL));
-    this._$.appendChild(new FilterBtn(store, VisibilityFilters.SHOW_ACTIVE));
-    this._$.appendChild(new FilterBtn(store, VisibilityFilters.SHOW_COMPLETED));
+    this._$.appendChild(new FilterBtn(store, VisibilityFilters.SHOW_ALL).dom());
+    this._$.appendChild(new FilterBtn(store, VisibilityFilters.SHOW_ACTIVE).dom());
+    this._$.appendChild(new FilterBtn(store, VisibilityFilters.SHOW_COMPLETED).dom());
   }
 }
 
