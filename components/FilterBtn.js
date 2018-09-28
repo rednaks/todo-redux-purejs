@@ -4,7 +4,7 @@ import {
 } from '../states/actions.js'
 
 export default class FilterBtn extends Element {
-  constructor(store, displayName, visibilityFilter) {
+  constructor(displayName, visibilityFilter) {
     super();
     this._$ = document.createElement('button');
     this._$.disabled = false;

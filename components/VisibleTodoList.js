@@ -4,7 +4,7 @@ import TodoList from './TodoList.js';
 import { VisibilityFilters } from '../states/actions.js';
 
 export default class VisibleTodoList extends Element {
-  constructor(store) {
+  constructor() {
     super();
     // TODO unsubscribe
     this._$ = document.createElement('ul');
@@ -25,7 +25,7 @@ export default class VisibleTodoList extends Element {
       case VisibilityFilters.SHOW_ACTIVE:
         return todos.filter(todo => !todo.completed);
       default:
-        throw new Error('Unknown filter: ' + filter);
+        throw new Error('Unknown filter: ' + visibilityFilter);
       }
   }
 };

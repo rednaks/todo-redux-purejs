@@ -10,8 +10,8 @@ import {
 import App from './components/App.js';
 
 
-const store = Redux.createStore(todoApp);
-const app = new App(store);
+window.store = Redux.createStore(todoApp);
+const app = new App();
 document.body.appendChild(app.dom());
 
 console.log(store.getState());

@@ -2,7 +2,7 @@ import Element from './Element.js';
 import { addTodo } from '../states/actions.js';
 
 export default class AddTodo extends Element {
-  constructor(store) {
+  constructor() {
     super();
     this._$ = document.createElement('div');
     
