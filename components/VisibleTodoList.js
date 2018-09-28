@@ -7,6 +7,7 @@ export default class VisibleTodoList extends Element {
   constructor(store) {
     super();
     // TODO unsubscribe
+    this._$ = document.createElement('ul');
     store.subscribe(() => {
       const state = store.getState();
       const todos = this.getVisibleTodoList(state.todos, state.visibilityFilter);
