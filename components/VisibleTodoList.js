@@ -16,7 +16,7 @@ export default class VisibleTodoList extends Element {
   }
   
   getVisibleTodoList(todos, visibilityFilter) {
-    switch (filter) {
+    switch (visibilityFilter) {
       case VisibilityFilters.SHOW_ALL:
         return todos;
       case VisibilityFilters.SHOW_COMPLETED:

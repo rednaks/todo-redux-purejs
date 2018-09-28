@@ -1,5 +1,5 @@
 import Element from './Element.js';
-import addTodo from '../states/actions.js';
+import { addTodo } from '../states/actions.js';
 
 export default class AddTodo extends Element {
   constructor(store) {
@@ -20,13 +20,13 @@ export default class AddTodo extends Element {
   
     _$form.addEventListener('submit', (e) => {
       e.preventDefault();
-      if(!this._$input.value.trim()) {
+      if(!_$input.value.trim()) {
         console.log('empty input');
         return;
       }
 
-      store.dispatch(addTodo(this._$input.value));
-      this._$input.value = '';
+      store.dispatch(addTodo(_$input.value));
+      _$input.value = '';
     });
 
   }
