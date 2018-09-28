@@ -1,7 +1,7 @@
 import Element from './Element.js';
 import TodoList from './TodoList.js';
 
-import { VisibilityFilters } from '../states/actions.js';
+import { VisibilityFilters, toggleTodo } from '../states/actions.js';
 
 export default class VisibleTodoList extends Element {
   constructor() {
@@ -11,7 +11,7 @@ export default class VisibleTodoList extends Element {
     store.subscribe(() => {
       const state = store.getState();
       const todos = this.getVisibleTodoList(state.todos, state.visibilityFilter);
-      const todoList = new TodoList({todos});
+      const todoList = new TodoList({todos, toggleTodo});
 
       const _$parent = this._$.parentElement;
       _$parent.removeChild(this._$);

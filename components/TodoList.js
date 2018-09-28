@@ -6,7 +6,7 @@ export default class TodoList extends Element {
     super();
     this._$ = document.createElement('ul');
     todos.forEach((todo, index) => {
-      const $todo = new Todo({...todo, onClick: () => {toggleTodo(todo.id)}});
+      const $todo = new Todo({...todo, onClick: () => {store.dispatch(toggleTodo(todo.id))}});
       this._$.appendChild($todo.dom());
     });
   }
