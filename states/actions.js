@@ -31,3 +31,5 @@ export const toggleTodo = id => {
     id
   }
 }
+
+export default {VisibilityFilters, setVisibilityFilter, addTodo, toggleTodo};

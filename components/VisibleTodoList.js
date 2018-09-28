@@ -1,9 +1,9 @@
 import Element from './Element.js';
 import TodoList from './TodoList.js';
 
-import { VisibilityFilters } from '../state/actions.js';
+import { VisibilityFilters } from '../states/actions.js';
 
-class VisibleTodoList extends Element {
+export default class VisibleTodoList extends Element {
   constructor(store) {
     super();
     // TODO unsubscribe
@@ -25,7 +25,7 @@ class VisibleTodoList extends Element {
         return todos.filter(todo => !todo.completed);
       default:
         throw new Error('Unknown filter: ' + filter);
+      }
   }
-}
+};
 
-export default VisibleTodoList;

@@ -1,6 +1,6 @@
 import Element from './Element.js';
 
-class Todo extends Element {
+export default class Todo extends Element {
   constructor ({text, completed, onClick}){
     super();
 
@@ -13,4 +13,3 @@ class Todo extends Element {
   }
 }
 
-export default Todo;

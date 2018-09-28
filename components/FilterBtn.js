@@ -1,10 +1,10 @@
 import Element from './Element.js';
 import {
     setVisibilityFilter
-} from '../state/actions.js'
+} from '../states/actions.js'
 
-class FilterBtn extends Element {
-  constructor({store, visibilityFilter}) {
+export default class FilterBtn extends Element {
+  constructor(store, visibilityFilter) {
     super();
     this._$ = document.createElement('button');
     this._$.disabled = false;
@@ -23,4 +23,3 @@ class FilterBtn extends Element {
   }
 }
 
-export default FilterBtn;

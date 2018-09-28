@@ -3,7 +3,7 @@ import AddTodo from './AddTodo.js';
 import VisibleTodoList from './VisibleTodoList.js';
 import Footer from './Footer.js';
 
-class App extends Element {
+export default class App extends Element {
 // WIP
   constructor(store) {
     super();

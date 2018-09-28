@@ -1,8 +1,8 @@
 import Element from './Element.js';
-import FilterLink from './FilterBtn.js';
+import FilterBtn from './FilterBtn.js';
 import { VisibilityFilters } from '../states/actions.js';
 
-class Footer extends Element {
+export default class Footer extends Element {
   constructor(store) {
     super();
     this._$ = document.createElement('div'); 
@@ -16,4 +16,3 @@ class Footer extends Element {
 }
 
 
-export default Footer;

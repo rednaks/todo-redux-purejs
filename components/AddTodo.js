@@ -1,7 +1,7 @@
 import Element from './Element.js';
-import addTodo from '../state/actions.js';
+import addTodo from '../states/actions.js';
 
-class AddTodo extends Element {
+export default class AddTodo extends Element {
   constructor(store) {
     super();
     this._$ = document.createElement('div');

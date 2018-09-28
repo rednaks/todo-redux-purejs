@@ -1,7 +1,6 @@
-class Element {
+export default class Element {
   dom() {
     return this._$;
   }
 }
 
-export default Element;
