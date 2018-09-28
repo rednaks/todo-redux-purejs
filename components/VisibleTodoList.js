@@ -8,11 +8,13 @@ export default class VisibleTodoList extends Element {
     super();
     // TODO unsubscribe
     this._$ = document.createElement('ul');
+
     store.subscribe(() => {
       const state = store.getState();
       const todos = this.getVisibleTodoList(state.todos, state.visibilityFilter);
       const todoList = new TodoList({todos, toggleTodo});
 
+      // FIXME: is there a better way to do this ?:
       const _$parent = this._$.parentElement;
       _$parent.removeChild(this._$);
       this._$ = todoList.dom();
