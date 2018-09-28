@@ -12,7 +12,13 @@ export default class VisibleTodoList extends Element {
       const state = store.getState();
       const todos = this.getVisibleTodoList(state.todos, state.visibilityFilter);
       const todoList = new TodoList({todos});
+
+      const _$parent = this._$.parentElement;
+      _$parent.removeChild(this._$);
       this._$ = todoList.dom();
+      _$parent.appendChild(this._$);
+
+
     });
   }
   
