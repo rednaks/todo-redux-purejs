@@ -16,7 +16,10 @@ document.body.appendChild(app.dom());
 
 console.log(store.getState());
 
-const unsubscribe = store.subscribe(() => {console.log(store.getState())});
+const unsubscribe = store.subscribe(() => {
+  const state = store.getState();
+  console.log('saving state to local storage: ',  state);
+  window.localStorage.setItem('state', JSON.stringify(state));
+});
 
 
-unsubscribe();
