@@ -1,15 +1,18 @@
-import Element from './Element.js';
+import Button from './Button.js';
+
 import {
     setVisibilityFilter
 } from '../states/actions.js'
 
-export default class FilterBtn extends Element {
+export default class FilterBtn extends Button {
   constructor(displayName, visibilityFilter) {
     super();
-    this._$ = document.createElement('button');
+
     this._$.disabled = false;
     this._$.innerHTML = displayName;
+
     this._$.style.marginLeft = '4px';
+
     this._visibilityFilter = visibilityFilter;
 
     this._$.addEventListener('click', () => {

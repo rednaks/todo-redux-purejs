@@ -1,4 +1,6 @@
 import Element from './Element.js';
+import Button from './Button.js';
+
 import { addTodo } from '../states/actions.js';
 
 export default class AddTodo extends Element {
@@ -11,7 +13,7 @@ export default class AddTodo extends Element {
 
     const _$input = document.createElement('input');
 
-    const _$submitBtn = document.createElement('button');
+    const _$submitBtn = new Button().dom();
     _$submitBtn.type = 'submit';
     _$submitBtn.innerHTML = 'Add';
 
