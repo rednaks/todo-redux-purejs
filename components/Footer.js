@@ -9,9 +9,18 @@ export default class Footer extends Element {
     const _$showLabel = document.createElement('span');
     this._$.appendChild(_$showLabel);
 
-    this._$.appendChild(new FilterBtn('ALL', VisibilityFilters.SHOW_ALL).dom());
-    this._$.appendChild(new FilterBtn('ACTIVE', VisibilityFilters.SHOW_ACTIVE).dom());
-    this._$.appendChild(new FilterBtn('COMPLETED', VisibilityFilters.SHOW_COMPLETED).dom());
+    const $allBtn = new FilterBtn('ALL', VisibilityFilters.SHOW_ALL).dom()
+    $allBtn.classList.add('is-primary');
+    this._$.appendChild($allBtn);
+
+    const $activeBtn = new FilterBtn('ACTIVE', VisibilityFilters.SHOW_ACTIVE).dom()
+    $activeBtn.classList.add('is-info');
+    this._$.appendChild($activeBtn);
+
+    const $completedBtn = new FilterBtn('COMPLETED', VisibilityFilters.SHOW_COMPLETED).dom()
+    $completedBtn.classList.add('is-light');
+    this._$.appendChild($completedBtn);
+
   }
 }
 
