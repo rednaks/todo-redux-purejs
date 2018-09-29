@@ -7,9 +7,17 @@ export default class App extends Element {
 // WIP
   constructor() {
     super();
-    this._$ = document.createElement('div');
-    this._$.append(new AddTodo().dom());
-    this._$.append(new VisibleTodoList().dom());
-    this._$.append(new Footer().dom());
+    this._$ = document.createElement('nav');
+    this._$.classList.add('level');
+
+    const $container = document.createElement('div');
+    $container.classList.add('has-text-centered');
+
+    $container.append(new AddTodo().dom());
+    $container.append(new VisibleTodoList().dom());
+    $container.append(new Footer().dom());
+
+    this._$.append($container);
+
   }
 }
