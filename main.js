@@ -18,8 +18,8 @@ console.log(store.getState());
 
 const unsubscribe = store.subscribe(() => {
   const state = store.getState();
-  console.log('saving state to local storage: ',  state);
-  window.localStorage.setItem('state', JSON.stringify(state));
+  console.log('DISABLED: saving state to local storage: ',  state);
+  //window.localStorage.setItem('state', JSON.stringify(state));
 });
 
 
