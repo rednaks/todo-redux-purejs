@@ -10,4 +10,4 @@ to create modular and structored webapps.
 How to run:
 -----
 
-Clone the repository and open `index.html` on your browser. that's it, no package manager, no build tolls, just a browser.
+Clone the repository and open `index.html` on your browser. that's it, no package manager, no build tools, just a browser.
