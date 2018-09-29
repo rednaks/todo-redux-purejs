@@ -9,13 +9,18 @@ import {
 // Extracts `SHOW_ALL` value from `VisibilityFilters` object.
 const { SHOW_ALL } = VisibilityFilters 
 
-const initialState = {
+let storedState;
+try {
+  storedState = JSON.parse(window.localStorage.getItem('state'));
+} catch {
+  console.error("Couldn't get the state from localstorage");
+}
+const initialState = storedState || {
   visibilityFilter: VisibilityFilters.SHOW_ALL,
   todos: []
 }
 
-
-const todos = (state=[], action) => {
+const todos = (state=initialState.todos, action) => {
   switch (action.type) {
     case ADD_TODO:
       return [...state, {id: action.id, text: action.text, completed: false}];
@@ -32,7 +37,7 @@ const todos = (state=[], action) => {
   };
 }
 
-const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
+const visibilityFilter = (state = initialState.visibilityFilter, action) => {
   switch(action.type) {
     case SET_VISIBILITY_FILTER:
       return action.filter;
