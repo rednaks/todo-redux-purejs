@@ -9,7 +9,6 @@ export default class VisibleTodoList extends Element {
     // TODO unsubscribe
     this._$ = document.createElement('nav');
     this._$.classList.add('panel');
-
     store.subscribe(() => {
       const state = store.getState();
       const todos = this.getVisibleTodoList(state.todos, state.visibilityFilter);
