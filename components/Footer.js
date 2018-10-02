@@ -1,27 +1,38 @@
-import Element from './Element.js';
 import FilterBtn from './FilterBtn.js';
 import { VisibilityFilters } from '../states/actions.js';
 
-export default class Footer extends Element {
+const template = document.createElement('template');
+
+template.innerHTML = `
+    <style>
+      :host {
+        display: inline-block;
+      }
+    </style>
+
+    <div id="container">
+      <span></span>
+    </div>
+  `;
+
+export default class Footer extends HTMLElement {
   constructor() {
     super();
-    this._$ = document.createElement('div'); 
-    const _$showLabel = document.createElement('span');
-    this._$.appendChild(_$showLabel);
+    this.appendChild(template.content.cloneNode(true));
+  }
 
-    const $allBtn = new FilterBtn('ALL', VisibilityFilters.SHOW_ALL).dom()
-    $allBtn.classList.add('is-primary');
-    this._$.appendChild($allBtn);
+  connectedCallback() {
+    const container = this.querySelector('#container');
 
-    const $activeBtn = new FilterBtn('ACTIVE', VisibilityFilters.SHOW_ACTIVE).dom()
-    $activeBtn.classList.add('is-info');
-    this._$.appendChild($activeBtn);
+    const $allBtn = new FilterBtn('ALL', VisibilityFilters.SHOW_ALL, 'is-primary')
+    container.appendChild($allBtn);
 
-    const $completedBtn = new FilterBtn('COMPLETED', VisibilityFilters.SHOW_COMPLETED).dom()
-    $completedBtn.classList.add('is-light');
-    this._$.appendChild($completedBtn);
+    const $activeBtn = new FilterBtn('ACTIVE', VisibilityFilters.SHOW_ACTIVE, 'is-info')
+    container.appendChild($activeBtn);
 
+    const $completedBtn = new FilterBtn('COMPLETED', VisibilityFilters.SHOW_COMPLETED, 'is-light')
+    container.appendChild($completedBtn);
   }
 }
 
-
+customElements.define('c-footer', Footer);

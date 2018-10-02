@@ -1,29 +1,43 @@
-import Button from './Button.js';
+import { setVisibilityFilter } from '../states/actions.js'
 
-import {
-    setVisibilityFilter
-} from '../states/actions.js'
+const template = document.createElement('template');
 
-export default class FilterBtn extends Button {
-  constructor(displayName, visibilityFilter) {
+template.innerHTML = `
+    <style>
+      :host {
+        display: inline-block;
+        margin-left: 4px;
+      }
+    </style>
+
+    <button class="button"></button>
+  `;
+
+export default class FilterBtn extends HTMLElement {
+  constructor(displayName, visibilityFilter, btnClass) {
     super();
-
-    this._$.disabled = false;
-    this._$.innerHTML = displayName;
-
-    this._$.style.marginLeft = '4px';
+    this.appendChild(template.content.cloneNode(true));
+    const btn = this.querySelector('button');
+    btn.disabled = false;
+    btn.classList.add(btnClass);
+    btn.innerHTML = displayName;
 
     this._visibilityFilter = visibilityFilter;
+  }
 
-    this._$.addEventListener('click', () => {
+  connectedCallback() {
+    const btn = this.querySelector('button');
+
+    btn.addEventListener('click', () => {
       store.dispatch(setVisibilityFilter(this._visibilityFilter));
     });
 
     store.subscribe(() => {
       const state = store.getState();
-      console.log('FilterBtn: ', state);
-      this._$.disabled = (this._visibilityFilter === state.visibilityFilter);
+      // console.log('FilterBtn: ', state);
+      btn.disabled = (this._visibilityFilter === state.visibilityFilter);
     });
   }
 }
 
+customElements.define('c-filter-btn', FilterBtn);

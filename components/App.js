@@ -14,6 +14,7 @@ template.innerHTML = `
     <nav class="level">
       <div id="container" class="has-text-centered">
         <c-add-todo></c-add-todo>
+        <c-footer></c-footer>
       </div>
     </nav>
   `;
@@ -28,7 +29,6 @@ export default class TodoApp extends HTMLElement {
   connectedCallback() {
     const container = this.querySelector('#container');
     container.append(new VisibleTodoList().dom());
-    container.append(new Footer().dom());
   }
 }
 
