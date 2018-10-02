@@ -11,7 +11,16 @@ template.innerHTML = `
       }
     </style>
 
-    <div id="container"></div>
+    <div id="container">
+      <form class="field has-addons">
+        <div class="control">
+          <input class="input"></input>
+        </div>
+        <div class="control">
+          <button class="button">Add</button>
+        </div>
+      </form>
+    </div>
   `;
 export default class AddTodo extends HTMLElement {
   constructor() {
@@ -20,28 +29,29 @@ export default class AddTodo extends HTMLElement {
   }
 
   connectedCallback() {
-    const container = this.querySelector('#container');
+    // const container = this.querySelector('#container');
 
-    const _$form =  document.createElement('form');
-    _$form.classList.add('field', 'has-addons');
-    container.appendChild(_$form);
+    const _$form = this.querySelector('form');
+    // const _$form =  document.createElement('form');
+    // _$form.classList.add('field', 'has-addons');
+    // container.appendChild(_$form);
 
-    const _$input = document.createElement('input');
-    _$input.classList.add('input');
-    const _$inputContainer = document.createElement('div');
-    _$inputContainer.classList.add('control');
-    _$inputContainer.appendChild(_$input);
+    // const _$input = document.createElement('input');
+    // _$input.classList.add('input');
+    // const _$inputContainer = document.createElement('div');
+    // _$inputContainer.classList.add('control');
+    // _$inputContainer.appendChild(_$input);
 
-    const _$submitBtn = new Button().dom();
-    _$submitBtn.type = 'submit';
-    _$submitBtn.innerHTML = 'Add';
+    // const _$submitBtn = new Button().dom();
+    // _$submitBtn.type = 'submit';
+    // _$submitBtn.innerHTML = 'Add';
 
-    const _$submitContainer = document.createElement('div');
-    _$submitContainer.classList.add('control');
-    _$submitContainer.appendChild(_$submitBtn);
+    // const _$submitContainer = document.createElement('div');
+    // _$submitContainer.classList.add('control');
+    // _$submitContainer.appendChild(_$submitBtn);
 
-    _$form.appendChild(_$inputContainer);
-    _$form.appendChild(_$submitContainer);
+    // _$form.appendChild(_$inputContainer);
+    // _$form.appendChild(_$submitContainer);
 
     _$form.addEventListener('submit', (e) => {
       e.preventDefault();
