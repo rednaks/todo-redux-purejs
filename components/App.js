@@ -1,6 +1,6 @@
 import './AddTodo.js';
-import Footer from './Footer.js';
-import VisibleTodoList from './VisibleTodoList.js';
+import './Footer.js';
+import './VisibleTodoList.js';
 
 const template = document.createElement('template');
 
@@ -14,6 +14,7 @@ template.innerHTML = `
     <nav class="level">
       <div id="container" class="has-text-centered">
         <c-add-todo></c-add-todo>
+        <c-visible-todo-list></c-visible-todo-list>
         <c-footer></c-footer>
       </div>
     </nav>
@@ -27,8 +28,7 @@ export default class TodoApp extends HTMLElement {
   }
 
   connectedCallback() {
-    const container = this.querySelector('#container');
-    container.append(new VisibleTodoList().dom());
+    // const container = this.querySelector('#container');
   }
 }
 

@@ -1,26 +1,35 @@
-import Element from './Element.js';
 import TodoList from './TodoList.js';
 
 import { VisibilityFilters, toggleTodo } from '../states/actions.js';
 
-export default class VisibleTodoList extends Element {
+const template = document.createElement('template');
+
+template.innerHTML = `
+    <style>
+      :host {
+        // display: inline-block;
+      }
+    </style>
+
+    <nav class="panel"></nav>
+  `;
+
+export default class VisibleTodoList extends HTMLElement {
   constructor() {
     super();
+    this.appendChild(template.content.cloneNode(true));
+  }
+
+  connectedCallback() {
     // TODO unsubscribe
-    this._$ = document.createElement('nav');
-    this._$.classList.add('panel');
     store.subscribe(() => {
       const state = store.getState();
       const todos = this.getVisibleTodoList(state.todos, state.visibilityFilter);
-      const todoList = new TodoList({todos, toggleTodo});
+      const todoList = new TodoList({ todos, toggleTodo });
 
-      // FIXME: is there a better way to do this ?:
-      const _$parent = this._$.parentElement;
-      _$parent.removeChild(this._$);
-      this._$ = todoList.dom();
-      _$parent.appendChild(this._$);
-
-
+      const container = this.querySelector('nav');
+      const oldList = this.querySelector('c-todo-list');
+      oldList ? container.replaceChild(todoList, oldList) : container.appendChild(todoList);
     });
   }
   
@@ -38,3 +47,4 @@ export default class VisibleTodoList extends Element {
   }
 };
 
+customElements.define('c-visible-todo-list', VisibleTodoList);
