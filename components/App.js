@@ -1,15 +1,35 @@
-import Element from './Element.js';
-import AddTodo from './AddTodo.js';
-import VisibleTodoList from './VisibleTodoList.js';
-import Footer from './Footer.js';
+import './AddTodo.js';
+import './Footer.js';
+import './VisibleTodoList.js';
 
-export default class App extends Element {
-// WIP
+const template = document.createElement('template');
+
+template.innerHTML = `
+    <style>
+      :host {
+        display: inline-block;
+      }
+    </style>
+
+    <nav class="level">
+      <div id="container" class="has-text-centered">
+        <c-add-todo></c-add-todo>
+        <c-visible-todo-list></c-visible-todo-list>
+        <c-footer></c-footer>
+      </div>
+    </nav>
+  `;
+
+export default class TodoApp extends HTMLElement {
   constructor() {
     super();
-    this._$ = document.createElement('div');
-    this._$.append(new AddTodo().dom());
-    this._$.append(new VisibleTodoList().dom());
-    this._$.append(new Footer().dom());
+    // this.attachShadow({ mode: 'open' });
+    this.appendChild(template.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    // const container = this.querySelector('#container');
   }
 }
+
+customElements.define('c-todo-app', TodoApp);

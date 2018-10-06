@@ -1,18 +1,38 @@
-import Element from './Element.js';
 import FilterBtn from './FilterBtn.js';
 import { VisibilityFilters } from '../states/actions.js';
 
-export default class Footer extends Element {
+const template = document.createElement('template');
+
+template.innerHTML = `
+    <style>
+      :host {
+        display: inline-block;
+      }
+    </style>
+
+    <div id="container">
+      <span></span>
+    </div>
+  `;
+
+export default class Footer extends HTMLElement {
   constructor() {
     super();
-    this._$ = document.createElement('div'); 
-    const _$showLabel = document.createElement('span');
-    this._$.appendChild(_$showLabel);
+    this.appendChild(template.content.cloneNode(true));
+  }
 
-    this._$.appendChild(new FilterBtn('ALL', VisibilityFilters.SHOW_ALL).dom());
-    this._$.appendChild(new FilterBtn('ACTIVE', VisibilityFilters.SHOW_ACTIVE).dom());
-    this._$.appendChild(new FilterBtn('COMPLETED', VisibilityFilters.SHOW_COMPLETED).dom());
+  connectedCallback() {
+    const container = this.querySelector('#container');
+
+    const $allBtn = new FilterBtn('ALL', VisibilityFilters.SHOW_ALL, 'is-primary')
+    container.appendChild($allBtn);
+
+    const $activeBtn = new FilterBtn('ACTIVE', VisibilityFilters.SHOW_ACTIVE, 'is-info')
+    container.appendChild($activeBtn);
+
+    const $completedBtn = new FilterBtn('COMPLETED', VisibilityFilters.SHOW_COMPLETED, 'is-light')
+    container.appendChild($completedBtn);
   }
 }
 
-
+customElements.define('c-footer', Footer);

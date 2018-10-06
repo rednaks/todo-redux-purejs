@@ -1,15 +1,33 @@
-import Element from './Element.js';
+const template = document.createElement('template');
 
-export default class Todo extends Element {
+template.innerHTML = `
+    <style>
+      :host {
+        // display: inline-block;
+      }
+    </style>
+
+    <a class="panel-block">
+      <input type="checkbox"></input>
+      <span></span>
+    </a>
+  `;
+
+export default class Todo extends HTMLElement {
   constructor ({text, completed, onClick}){
     super();
+    this.appendChild(template.content.cloneNode(true));
 
-    this._completed = completed;
-    this._$ = document.createElement("li");
+    const checkBox = this.querySelector('input[type="checkbox"]');
+    checkBox.checked = completed ? true : false;
 
-    this._$.style.textDecoration = completed ? 'line-through' : 'none';
-    this._$.innerHTML = text; 
-    this._$.addEventListener('click', onClick.bind(this));
+    const span = this.querySelector('span');
+    span.style.textDecoration = completed ? 'line-through' : 'none';
+    span.innerText = text;
+
+    const a = this.querySelector('a');
+    a.addEventListener('click', onClick.bind(this));
   }
 }
 
+customElements.define('c-todo', Todo);

@@ -1,23 +1,36 @@
-import Element from './Element.js';
 import { addTodo } from '../states/actions.js';
 
-export default class AddTodo extends Element {
+const template = document.createElement('template');
+
+template.innerHTML = `
+    <style>
+      :host {
+        display: inline-block;
+      }
+    </style>
+
+    <div id="container">
+      <form class="field has-addons">
+        <div class="control">
+          <input class="input"></input>
+        </div>
+        <div class="control">
+          <button class="button">Add</button>
+        </div>
+      </form>
+    </div>
+  `;
+
+export default class AddTodo extends HTMLElement {
   constructor() {
     super();
-    this._$ = document.createElement('div');
-    
-    const _$form =  document.createElement('form');
-    this._$.appendChild(_$form);
+    this.appendChild(template.content.cloneNode(true));
+  }
 
-    const _$input = document.createElement('input');
+  connectedCallback() {
+    const _$form = this.querySelector('form');
+    const _$input = this.querySelector('input');
 
-    const _$submitBtn = document.createElement('button');
-    _$submitBtn.type = 'submit';
-    _$submitBtn.innerHTML = 'Add';
-
-    _$form.appendChild(_$input);
-    _$form.appendChild(_$submitBtn);
-  
     _$form.addEventListener('submit', (e) => {
       e.preventDefault();
       if(!_$input.value.trim()) {
@@ -28,6 +41,7 @@ export default class AddTodo extends Element {
       store.dispatch(addTodo(_$input.value));
       _$input.value = '';
     });
-
   }
 }
+
+customElements.define('c-add-todo', AddTodo);
